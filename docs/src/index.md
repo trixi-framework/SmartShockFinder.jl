@@ -1,10 +1,5 @@
 # SmartShockFinder.jl
 
-[![Docs-dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://trixi-framework.github.io/SmartShockFinder.jl/dev)
-[![Build Status](https://github.com/trixi-framework/SmartShockFinder.jl/workflows/CI/badge.svg)](https://github.com/trixi-framework/SmartShockFinder.jl/actions?query=workflow%3ACI)
-[![Coveralls](https://coveralls.io/repos/github/trixi-framework/SmartShockFinder.jl/badge.svg?branch=main)](https://coveralls.io/github/trixi-framework/SmartShockFinder.jl?branch=main)
-[![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
-
 **Note: This package is in a pre-alpha stage: anything can (and will!) change at any time!**
 
 
@@ -82,4 +77,4 @@ Julia Odenthal (both University of Cologne, Germany).
 
 
 ## License and contributing
-SmartShockFinder is licensed under the MIT license (see [LICENSE.md](LICENSE.md)).
+SmartShockFinder is licensed under the MIT license (see [License](@ref)).
