@@ -1,7 +1,5 @@
 # SmartShockFinder.jl
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-success.svg)](https://opensource.org/licenses/MIT)
-
 **Note: This package is in a pre-alpha stage: anything can (and will!) change at any time!**
 
 
