@@ -51,6 +51,7 @@ function train_network1d(datatyp, n_dims, η, β, number_epochs, Sb, L,
         if acc > best_acc
             best_acc = acc
             last_improvement = epoch_idx
+            mkpath(joinpath("networks", "$(n_dims)d"))
             @save "networks/$(n_dims)d/model$(n_dims)d$(datatyp)-$(acc)-$(β).bson" model1d
         end
 
