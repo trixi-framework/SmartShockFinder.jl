@@ -42,13 +42,15 @@ function get_mesh_1d(i)
                     n_cells_max=10_000
                     )
     if i==1
-        mesh = mesh1_1d
+        mesh = [mesh1_1d]
     elseif i==2
-        mesh = mesh2_1d
+        mesh = [mesh2_1d]
     elseif i==3
-        mesh = mesh3_1d
+        mesh = [mesh3_1d]
     elseif i==4
-        mesh = mesh4_1d
+        mesh = [mesh4_1d]
+    elseif i==5
+        return [mesh1_1d,mesh2_1d,mesh3_1d,mesh4_1d]
     end
     return mesh
 end
