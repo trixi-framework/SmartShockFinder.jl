@@ -63,15 +63,19 @@ function get_mesh_2d(i)
                   )
 
   if i==1
-    mesh = mesh1_2d
+    return [mesh1_2d]
   elseif i==2
-    mesh = mesh2_2d
+    return[mesh2_2d]
   elseif i==3
-    mesh = mesh3_2d
+    return [mesh3_2d]
   elseif i==4
-    mesh = mesh4_2d
+    return [mesh4_2d]
   elseif i==5
-    mesh = mesh5_2d
+    return [mesh5_2d]
+  elseif i==6
+    return [mesh1_2d,mesh2_2d,mesh3_2d,mesh4_2d,mesh5_2d]
+  else
+    error("Input not defined. Should be an Integer between 1-6")
   end
-  return mesh
+
 end

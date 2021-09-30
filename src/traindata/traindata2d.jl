@@ -1,8 +1,10 @@
+function generate_traindataset2d(network::AbstractNetworkTyp, training_setup::Traindata_Settings)
+    @unpack meshes, polydegrees, length_data = training_setup
+    @unpack n_dims, input_size  = network
 
-
-function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
-
-    n_dims = 2
+    datatyp = string(typeof(network))
+    data_input_size = input_size
+    polydeg = polydegrees
     X = zeros(data_input_size, 0)
     if datatyp == "NNPP" || datatyp == "NNRH"
         X = zeros(data_input_size, 0)
@@ -16,11 +18,7 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
 
 
     # loop over meshs
-    for i in 1:n_meshes
-        println("Mesh $i")
-        #include("meshes/$(n_dims)d/mesh$(i).jl")
-        mesh = get_mesh_2d(i)
-
+    for mesh in meshes
         leaf_cell_ids = leaf_cells(mesh.tree)
         n_elements = length(leaf_cell_ids)
 
@@ -226,5 +224,3 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
     end
 
 end
-
-

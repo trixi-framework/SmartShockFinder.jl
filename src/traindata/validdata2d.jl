@@ -1,9 +1,10 @@
 
 
-function generate_validdataset2d(datatyp, n_meshes, polydeg, data_input_size)
+function generate_validdataset2d(network::AbstractNetworkTyp, training_setup::Traindata_Settings)
+    @unpack meshes, polydegrees, length_data = training_setup
+    @unpack n_dims, input_size  = network
 
-    n_dims = 2
-    X = zeros(data_input_size, 0)
+        X = zeros(data_input_size, 0)
     if datatyp == "NNPP" || datatyp == "NNRH"
         X = zeros(data_input_size, 0)
     elseif datatyp == "CNN"
