@@ -28,7 +28,7 @@ generate_traindataset2d(network_type, train_setup)
 generate_validdataset2d(network_type, train_setup)
 
 # Build network
-train_network2d(network_type, model_setup)
+train_network2dcnn(network_type, model_setup)
 
 
 

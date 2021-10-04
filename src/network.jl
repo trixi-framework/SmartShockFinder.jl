@@ -14,7 +14,7 @@ function Network(typ, Train_settings, Model_Settings)
 end
 
 
-# NeuralNetworkPerssonPeraire(NNPP) / When h is true, then NNPHh
+# NeuralNetworkPerssonPeraire(NNPP)
 struct NNPP <: AbstractNetworkTyp
     n_dims::Integer
     input_size::Integer
@@ -41,7 +41,7 @@ struct NNRH <: AbstractNetworkTyp
 end
   
 function NNRH(n_dims::Integer)
-    input_size = ndims == 2 ? 15 : 5 
+    input_size = n_dims == 2 ? 15 : 5 
     NNRH(n_dims, input_size)
 end
 

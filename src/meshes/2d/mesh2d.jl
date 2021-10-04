@@ -62,9 +62,9 @@ function get_mesh_2d(i)
                   n_cells_max=10_000
                   )
 
-    if i == 1
-        return [mesh1_2d]
-    elseif i == 2
+  if i == 1
+    return [mesh1_2d]
+  elseif i == 2
     return[mesh2_2d]
   elseif i == 3
     return [mesh3_2d]
@@ -76,6 +76,6 @@ function get_mesh_2d(i)
     return [mesh1_2d,mesh2_2d,mesh3_2d,mesh4_2d,mesh5_2d]
   else
     error("Input not defined. Should be an Integer between 1-6")
-    end
+  end
 
 end

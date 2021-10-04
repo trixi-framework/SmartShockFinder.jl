@@ -15,6 +15,7 @@ function Traindata_Settings(polydegrees, meshes)
     for i in eachindex(meshes)
         length_data += length(leaf_cells(meshes[i].tree)) * length(polydegrees) * 26
     end
+    length_data = max(length_data,25000)
     Traindata_Settings(polydegrees, meshes, 2 * length_data)
 end
 

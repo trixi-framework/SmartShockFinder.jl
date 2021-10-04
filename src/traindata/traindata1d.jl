@@ -25,8 +25,6 @@ function generate_traindataset1d(network::AbstractNetworkTyp, training_setup::Tr
         #loop over polydegrees
         for r in polydegrees 
             n_nodes = r + 1
-            # ToDo: Das vil mit ElasticArrays + indicator und modal in inputdata
-            # oder eher reshape vektor
             nodes, _ = gauss_lobatto_nodes_weights(n_nodes)
             node_coordinates = zeros(n_nodes)
        

@@ -6,6 +6,7 @@ function generate_traindataset2d(network::AbstractNetworkTyp, training_setup::Tr
     data_input_size = input_size
     polydeg = polydegrees
     X = zeros(data_input_size, 0)
+    
     if datatyp == "NNPP" || datatyp == "NNRH"
         X = zeros(data_input_size, 0)
     elseif datatyp == "CNN"
