@@ -83,7 +83,6 @@ function generate_inputdata2d(u, data, polydeg, datatyp::String)
 
 end
 
-
 function generate_inputXi2d(element_id, input_data, c2e, mesh, datatyp)
     if datatyp == "NNPP"
 

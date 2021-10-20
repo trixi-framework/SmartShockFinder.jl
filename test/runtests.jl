@@ -6,13 +6,20 @@ EXAMPLES_DIR = joinpath(pathof(SmartShockFinder) |> dirname |> dirname, "example
 @test_nowarn rm(joinpath("datasets"), recursive=true, force=true)
 
 @time @testset "SmartShockFinder" begin
+  @time @testset "Mesh" begin
+  include("test_meshes.jl")
+  end
+
   @test_nowarn mkpath(joinpath("datasets", "1d"))
 
-  @testset "examples/1d/traindata_NNPPh.jl" begin
-    @test_nowarn include(joinpath(EXAMPLES_DIR, "1d", "traindata_NNPPh.jl"))
+  @time @testset "1d" begin
+    include("networks1d.jl")
+  end
 
-    @test isfile(joinpath("datasets", "1d", "traindata1dNNPPh.h5"))
+  @time @testset "2d" begin
+    include("networks2d.jl")
   end
 end
 
 @test_nowarn rm(joinpath("datasets"), recursive=true, force=true)
+@test_nowarn rm(joinpath("networks"), recursive=true, force=true)

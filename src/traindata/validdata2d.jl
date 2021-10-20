@@ -1,9 +1,14 @@
 
 
-function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
+function generate_validdataset2d(network::AbstractNetworkTyp, training_setup::Traindata_Settings)
+    @unpack meshes, polydegrees, length_data = training_setup
+    @unpack n_dims, input_size  = network
 
-    n_dims = 2
+    datatyp = string(typeof(network))
+    data_input_size = input_size
+    polydeg = polydegrees
     X = zeros(data_input_size, 0)
+    
     if datatyp == "NNPP" || datatyp == "NNRH"
         X = zeros(data_input_size, 0)
     elseif datatyp == "CNN"
@@ -16,11 +21,7 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
 
 
     # loop over meshs
-    for i in 1:n_meshes
-        println("Mesh $i")
-        #include("meshes/$(n_dims)d/mesh$(i).jl")
-        mesh = get_mesh_2d(i)
-
+    for mesh in meshes
         leaf_cell_ids = leaf_cells(mesh.tree)
         n_elements = length(leaf_cell_ids)
 
@@ -45,9 +46,9 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
             end
 
             #loop over functions
-            for func in 1:19
+            for func in 1:9
                 #println("Funktion $func")
-                u(x,y) = trainfunction2d(func,x,y)
+                u(x,y) = validfunction2d(func,x,y)
 
                 if datatyp == "NNPP"
                     Xi = zeros(4,1)
@@ -101,29 +102,29 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
             end
 
             # troubled cells
-            for t in 1:530
-                if t < 75
+            for t in 1:300
+                if t < 50
                     func = 1
                     a = rand(Uniform(-100, 100))
                     m = rand(Uniform(-1,1))
                     x0 = rand(Uniform(-0.5, 0.5))
                     y0 = rand(Uniform(-0.5, 0.5))
                     u1(x,y) = troubledcellfunctionabs2d(x, y, a, m, x0, y0)
-                elseif t >= 75 && t<200
+                elseif t >= 50 && t<150
                     func = 2
                     ui = rand(Uniform(-1,1),4)
                     m = rand(Uniform(0,20))
                     x0 = rand(Uniform(-0.5, 0.5))
                     y0 = rand(Uniform(-0.5, 0.5))
                     u2(x,y) = troubledcellfunctionstep2d(x, y, ui, m, x0, y0)
-                elseif t >= 200 && t<400
+                elseif t >= 150 && t<200
                     func = 3
                     ui = rand(Uniform(-100,100),4)
                     m = rand(Uniform(0,20))
                     x0 = rand(Uniform(-0.5, 0.5))
                     y0 = rand(Uniform(-0.5, 0.5))
                     u3(x,y) = troubledcellfunctionstep2d(x, y, ui, m, x0, y0)
-                elseif t >= 400
+                elseif t >= 200
                     func = 4
                     ui = rand(Uniform(-10,10),2)
                     m = rand(Uniform(0,0.5))
@@ -220,7 +221,7 @@ function generate_traindataset2d(datatyp, n_meshes, polydeg, data_input_size)
     end
 
     println("Safe data")
-    h5open("datasets/$(n_dims)d/traindata2d$(datatyp).h5", "w") do file
+    h5open("datasets/$(n_dims)d/validdata2d$(datatyp).h5", "w") do file
         write(file, "X", X)
         write(file, "Y", Y)
     end
